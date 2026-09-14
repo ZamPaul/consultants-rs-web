@@ -1,0 +1,234 @@
+@import 'tailwindcss';
+
+/* ============================================================
+   Consultants RS — design tokens
+   Ported verbatim from prototype v5, with two deliberate changes:
+     1. --pad increased ~21% for the extra breathing room between sections
+     2. --pad-lg added for the hero and contact bookends
+   Colours are measured off the client's logo: the lion's line work is
+   #171C20 and its mane averages #B79956.
+   ============================================================ */
+:root {
+  --ink: #0b0b0c;
+  --ink-2: #121215;
+  --ink-3: #17171a;
+
+  --cream: #f5f0eb;
+  --cream-2: #ede7de;
+  --cream-3: #e2dace;
+
+  --gold: #c39b69;
+  --gold-hi: #dbbb8e;
+  --gold-ink: #8a6736;
+
+  --on-dark: #f5f0eb;
+  --on-dark-2: #9e9c99;
+  --on-light: #17171a;
+  --on-light-2: #5a5855;
+
+  --line-d: rgb(245 240 235 / 0.13);
+  --line-l: rgb(23 23 26 / 0.13);
+
+  --ease: cubic-bezier(0.22, 0.7, 0.25, 1);
+  --ease-curtain: cubic-bezier(0.45, 0.05, 0.15, 1);
+
+  --wrap: 1240px;
+  --gut: clamp(20px, 4.2vw, 60px);
+  --pad: clamp(92px, 10.4vw, 168px);
+  --pad-lg: clamp(112px, 12.4vw, 200px);
+
+  color-scheme: dark;
+}
+
+/* Expose the subset that JSX actually reaches for as Tailwind utilities.
+   The section layouts stay as hand-written CSS, because they were designed
+   that way in the prototype and rewriting them as utility soup would only
+   make them harder to compare against v5. */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-cream: var(--cream);
+  --color-cream-2: var(--cream-2);
+  --color-cream-3: var(--cream-3);
+  --color-gold: var(--gold);
+  --color-gold-hi: var(--gold-hi);
+  --color-gold-ink: var(--gold-ink);
+  --color-on-dark: var(--on-dark);
+  --color-on-dark-2: var(--on-dark-2);
+  --color-on-light: var(--on-light);
+  --color-on-light-2: var(--on-light-2);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --ease-site: var(--ease);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--on-dark);
+  font:
+    400 16.5px/1.72 var(--font-geist-sans),
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Helvetica,
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+body.lock {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--gold);
+  color: #17120a;
+}
+
+/* Scoped ground overrides. A light section redefines the on-dark tokens
+   rather than restating every colour, which is why nested components never
+   need to know which ground they sit on. */
+.light {
+  --on-dark: var(--on-light);
+  --on-dark-2: var(--on-light-2);
+  --line-d: var(--line-l);
+  --gold-hi: var(--gold-ink);
+  background: var(--cream);
+  color: var(--on-light);
+}
+
+.light-2 {
+  background: var(--cream-2);
+}
+
+.h1 {
+  font-size: clamp(38px, 5.5vw, 78px);
+  line-height: 0.99;
+  letter-spacing: -0.042em;
+  font-weight: 300;
+}
+
+.h2 {
+  font-size: clamp(29px, 3.8vw, 55px);
+  line-height: 1.04;
+  letter-spacing: -0.036em;
+  font-weight: 300;
+}
+
+.h3 {
+  font-size: clamp(19px, 1.7vw, 25px);
+  line-height: 1.2;
+  letter-spacing: -0.022em;
+  font-weight: 400;
+}
+
+.lede {
+  font-size: clamp(15.5px, 1.15vw, 17.5px);
+  line-height: 1.74;
+  letter-spacing: -0.006em;
+  color: var(--on-dark-2);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.light .eyebrow {
+  color: var(--gold-ink);
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+
+.sec {
+  padding-block: var(--pad);
+  position: relative;
+}
+
+/* Nothing is parked at opacity 0 in CSS. The motion layer adds .js to
+   <html> and only then sets start states, so a script failure leaves a
+   readable page rather than a blank one. This cost us a bug in v1. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

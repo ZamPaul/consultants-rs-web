@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run typecheck
+      - run: pnpm run lint
+      - run: pnpm run format:check
+      - run: pnpm run build
+        env:
+          # Build-time only. The real values live in Vercel; these satisfy the
+          # env schema so a PR can be type-checked and built without secrets.
+          SUPABASE_URL: https://example.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ci-placeholder-service-role-key
+          RESEND_API_KEY: ci-placeholder
+          ENQUIRY_NOTIFY_TO: ci@example.com
+          ENQUIRY_FROM: CI <ci@example.com>
+          ENQUIRY_REPLY_TO: ci@example.com
+          TURNSTILE_SECRET_KEY: ci-placeholder
+          UPSTASH_REDIS_REST_URL: https://example.upstash.io
+          UPSTASH_REDIS_REST_TOKEN: ci-placeholder
+          IP_HASH_SALT: ci-placeholder-salt-value
+          CRON_SECRET: ci-placeholder-cron-secret
