@@ -45,6 +45,12 @@ supabase/migrations/  applied with the Supabase CLI, never by hand
 
 - Fonts come from the official `geist` package, which wraps `next/font/local`.
   Self hosted, no build time network call, no runtime request to Google.
+- `src/assets/Logo.svg` is not a vector. It is a wrapper around two embedded
+  1594x1604 PNGs with no drawn geometry. `scripts/build-logo.py` recovers the
+  artwork and renders the two lockups; run it if the source art is replaced.
+- Image imports resolve through `src/types/assets.d.ts`, which is committed on
+  purpose. Next puts those declarations in the gitignored `next-env.d.ts`, so
+  without this file `pnpm run typecheck` fails on a clean checkout.
 - GSAP is free for commercial use including SplitText as of 3.13. It is
   dynamically imported after first paint and must stay out of the first load
   bundle.

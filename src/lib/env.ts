@@ -4,6 +4,11 @@ import { z } from 'zod';
 /**
  * Validated once, at first import on the server. A missing key fails loudly
  * at boot rather than as `undefined` inside a Resend call three weeks later.
+ *
+ * Turnstile is optional on purpose. Without keys the form still works and the
+ * remaining three spam defences still run; the server logs a warning so the
+ * gap is visible rather than silent. That keeps the site shippable before the
+ * Cloudflare account exists, and hardens the moment it does.
  */
 const schema = z.object({
   SUPABASE_URL: z.url(),
@@ -12,9 +17,7 @@ const schema = z.object({
   ENQUIRY_NOTIFY_TO: z.string().min(3),
   ENQUIRY_FROM: z.string().min(3),
   ENQUIRY_REPLY_TO: z.email(),
-  TURNSTILE_SECRET_KEY: z.string().min(10),
-  UPSTASH_REDIS_REST_URL: z.url(),
-  UPSTASH_REDIS_REST_TOKEN: z.string().min(10),
+  TURNSTILE_SECRET_KEY: z.string().optional(),
   IP_HASH_SALT: z.string().min(16),
   CRON_SECRET: z.string().min(16),
 });

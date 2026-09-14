@@ -1,0 +1,46 @@
+/**
+ * Canonical origin for metadata, OG tags and the sitemap.
+ *
+ * This used to be `process.env.NEXT_PUBLIC_SITE_URL ?? fallback`, which broke
+ * the first Vercel build: `??` only falls back on null and undefined, and
+ * Vercel hands an unset-but-declared variable through as an empty string. That
+ * produced `new URL('')`, ERR_INVALID_URL, and a failed build on /_not-found.
+ *
+ * Three rules learned from that:
+ *   1. `||`, not `??`, for anything that can arrive as an empty string.
+ *   2. Fall back to the deployment URL, so previews get correct metadata
+ *      instead of claiming to be production.
+ *   3. Metadata must never be able to fail a build. If the value is somehow
+ *      still unparseable, use the fallback rather than throwing.
+ */
+const FALLBACK = 'https://consultantsrs.com';
+
+function normalise(value: string | undefined): string | null {
+  const trimmed = value?.trim();
+  if (!trimmed) return null;
+  const withScheme = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+  try {
+    return new URL(withScheme).origin;
+  } catch {
+    return null;
+  }
+}
+
+export const SITE_URL: string =
+  normalise(process.env.NEXT_PUBLIC_SITE_URL) ||
+  normalise(process.env.VERCEL_PROJECT_PRODUCTION_URL) ||
+  normalise(process.env.VERCEL_URL) ||
+  FALLBACK;
+
+export const SITE = {
+  name: 'Consultants RS',
+  legalName: 'Consultants RS',
+  phone: '(914) 906-6800',
+  phoneHref: 'tel:+19149066800',
+  email: 'info@consultantsrs.com',
+  street: '268 Post Road, Suite 200',
+  locality: 'Fairfield',
+  region: 'CT',
+  postalCode: '06824',
+  country: 'US',
+} as const;

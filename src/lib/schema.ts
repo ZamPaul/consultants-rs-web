@@ -16,6 +16,9 @@ export const SERVICES = [
 
 export type Service = (typeof SERVICES)[number];
 
+/** The select's options, in order. Same array, named for what the UI uses it for. */
+export const SERVICES_OPTIONS: readonly Service[] = SERVICES;
+
 export const enquirySchema = z.object({
   name: z.string().trim().min(2, 'Please tell us your name.').max(120),
   email: z.email('That email address does not look right.').max(200),
@@ -28,7 +31,12 @@ export const enquirySchema = z.object({
     .max(4000),
   /** Honeypot. Real people never fill this; it is hidden and unlabelled. */
   company: z.literal('').optional(),
-  turnstileToken: z.string().min(1, 'Please complete the verification.'),
+  /**
+   * Optional here, enforced on the server only when a Turnstile secret is
+   * configured. Requiring it in the shared schema would break the form on any
+   * deployment that has not set the Cloudflare keys yet.
+   */
+  turnstileToken: z.string().optional(),
 });
 
 export type EnquiryInput = z.infer<typeof enquirySchema>;
