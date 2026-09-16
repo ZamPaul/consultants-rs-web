@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="wrap">
         <div className="ft-top">
           <div className="ft-brand">
-            <Logo ground="light" size={50} />
+            <Logo ground="light" size={56} />
             <div className="ft-tag">
               {FOOTER.tagline.map((word, i) => (
                 <span key={word}>
@@ -53,13 +53,15 @@ export function SiteFooter() {
           <small>
             &copy; {new Date().getFullYear()} {SITE.legalName}. All rights reserved.
           </small>
-          <nav className="ft-legal" aria-label="Legal">
-            {FOOTER.legal.map((link) => (
-              <a key={link.href} href={link.href}>
-                {link.label}
-              </a>
-            ))}
-          </nav>
+          {FOOTER.legal.length > 0 ? (
+            <nav className="ft-legal" aria-label="Legal">
+              {FOOTER.legal.map((link) => (
+                <a key={link.href} href={link.href}>
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          ) : null}
         </div>
       </div>
     </footer>

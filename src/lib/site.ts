@@ -26,10 +26,29 @@ function normalise(value: string | undefined): string | null {
   }
 }
 
+/**
+ * IMPORTANT: this value is where every absolute URL on the page points, and
+ * that includes the Open Graph image.
+ *
+ * It bit us once already. `NEXT_PUBLIC_SITE_URL` was set to the real domain
+ * while the site was still only deployed to its vercel.app URL, so the tag
+ * read `https://www.consultantsrs.com/opengraph-image.jpg` and the scraper
+ * fetched a 404 from the old WordPress site. Title and description showed;
+ * the image did not.
+ *
+ * So: leave `NEXT_PUBLIC_SITE_URL` unset until DNS actually points the domain
+ * at this deployment, and the chain below resolves to the URL the site is
+ * genuinely reachable at. Set it on cutover day, not before.
+ *
+ * Preview deployments ignore it outright and reference themselves, because a
+ * preview claiming to be production is wrong in every case.
+ */
+const isPreview = process.env.VERCEL_ENV === 'preview';
+
 export const SITE_URL: string =
-  normalise(process.env.NEXT_PUBLIC_SITE_URL) ||
-  normalise(process.env.VERCEL_PROJECT_PRODUCTION_URL) ||
+  (isPreview ? null : normalise(process.env.NEXT_PUBLIC_SITE_URL)) ||
   normalise(process.env.VERCEL_URL) ||
+  normalise(process.env.VERCEL_PROJECT_PRODUCTION_URL) ||
   FALLBACK;
 
 export const SITE = {

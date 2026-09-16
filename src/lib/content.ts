@@ -55,10 +55,13 @@ export const FOOTER = {
       ],
     },
   ],
-  legal: [
-    { href: '/privacy', label: 'Privacy Policy' },
-    { href: '/terms', label: 'Terms of Service' },
-  ],
+  /**
+   * Legal links are deliberately empty for now. They go back the moment the
+   * privacy policy exists: the contact form collects personal data and its own
+   * small print promises not to sell or share it, which is a public commitment
+   * with no page behind it until then.
+   */
+  legal: [] as ReadonlyArray<{ href: string; label: string }>,
 } as const;
 
 export const CONTACT = {
@@ -70,7 +73,7 @@ export const CONTACT = {
 
 export const HERO = {
   eyebrow: 'Ideas. Strategy. Real Growth.',
-  headline: ['Your Vision.', 'Our Expertise'],
+  headline: ['Your Vision', 'Our Expertise'],
   lede: 'Consultants RS LLC helps entrepreneurs and businesses turn ideas into successful ventures, build market presence, and achieve long-term growth.',
   imageAlt: 'A corner office at sunset looking out over a city skyline',
   rail: ['Strategy', 'People', 'Opportunity', 'Growth'],

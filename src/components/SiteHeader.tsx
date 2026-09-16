@@ -93,7 +93,7 @@ export function SiteHeader() {
             href="#top"
             aria-label={`${SITE.lockup}, back to top`}
           >
-            <Logo ground="light" size={44} priority />
+            <Logo ground="light" size={50} priority />
           </a>
 
           <nav className="nav" aria-label="Primary">
@@ -166,7 +166,6 @@ export function SiteHeader() {
               style={{ '--i': i, '--r': MENU.length - 1 - i } as React.CSSProperties}
             >
               {item.label}
-              <em>{String(i + 1).padStart(2, '0')}</em>
             </a>
           ))}
         </nav>
