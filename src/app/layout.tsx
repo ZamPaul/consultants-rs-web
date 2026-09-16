@@ -4,23 +4,40 @@ import { GeistMono } from 'geist/font/mono';
 import { SITE, SITE_URL } from '@/lib/site';
 import './globals.css';
 
+/**
+ * One title and one description for the whole site, by request.
+ *
+ * No `template`: a template only earns its place once there are child routes
+ * with their own titles, and there is one page here.
+ *
+ * The Open Graph image is `src/app/opengraph-image.jpg`. Next's file
+ * convention picks it up automatically and emits `og:image` and
+ * `twitter:image` with absolute URLs built from `metadataBase`, which is what
+ * every scraper requires. Keeping it in `src/assets` would have meant
+ * importing it and hand-building that absolute URL, and a relative one is the
+ * single most common reason an unfurl shows no image at all.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: {
-    default:
-      'Consultants RS | Business Launch, Marketing and Advertising in Fairfield, CT',
-    template: `%s | ${SITE.name}`,
-  },
+  title: 'Consultants RS LLC | Business Consulting & Growth Solutions',
   description:
-    'Consultants RS helps entrepreneurs and businesses turn ideas into successful ventures, build market presence, and create long term growth.',
+    'Consultants RS LLC helps entrepreneurs and businesses launch, grow, and build market presence through strategic business setup, marketing, and advertising solutions.',
+  applicationName: SITE.name,
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     url: SITE_URL,
     siteName: SITE.name,
-    title: 'Your Vision. Our Expertise.',
+    locale: 'en_US',
+    title: 'Consultants RS LLC | Business Consulting & Growth Solutions',
     description:
-      'Business launch and setup, marketing and promotion, advertising campaigns. Fairfield, Connecticut.',
+      'Consultants RS LLC helps entrepreneurs and businesses launch, grow, and build market presence through strategic business setup, marketing, and advertising solutions.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Consultants RS LLC | Business Consulting & Growth Solutions',
+    description:
+      'Consultants RS LLC helps entrepreneurs and businesses launch, grow, and build market presence through strategic business setup, marketing, and advertising solutions.',
   },
   robots: { index: true, follow: true },
 };

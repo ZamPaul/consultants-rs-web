@@ -43,14 +43,14 @@ export function Logo({
     <span className={className ? `brand ${className}` : 'brand'}>
       <Image
         src={src}
-        alt={wordmark ? '' : SITE.name}
+        alt={wordmark ? '' : SITE.lockup}
         height={size}
         width={Math.round((src.width / src.height) * size)}
         priority={priority}
         sizes={`${size * 2}px`}
         aria-hidden={wordmark || undefined}
       />
-      {wordmark ? <b>{SITE.name}</b> : null}
+      {wordmark ? <b>{SITE.lockup}</b> : null}
     </span>
   );
 }

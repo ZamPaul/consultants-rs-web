@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { TESTIMONIALS } from '@/lib/content';
+import { CLIENTS, TESTIMONIALS } from '@/lib/content';
 
 /**
  * One quote at a time, with arrows, dots, keyboard and swipe.
@@ -38,9 +38,9 @@ export function Testimonials() {
       <div className="wrap">
         <div className="tst-top" data-fade>
           <div>
-            <span className="eyebrow">Client Testimonials</span>
+            <span className="eyebrow">{CLIENTS.eyebrow}</span>
             <h2 className="h2" data-split>
-              What Our Clients Say.
+              {CLIENTS.headline}
             </h2>
           </div>
           <div className="tst-nav">

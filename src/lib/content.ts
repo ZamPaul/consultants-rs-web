@@ -5,9 +5,12 @@ import { SITE } from '@/lib/site';
  * and a brochure site do not need one, and not scattered through JSX, because
  * then a wording change becomes a hunt.
  *
- * Client rule for this project: American English, and no dashes anywhere in
- * user-facing copy. There is one deliberate hyphen, in "Multi-Channel
- * Marketing", which is a compound adjective rather than punctuation.
+ * Two client rules govern this file:
+ *   1. American English, and no em or en dashes anywhere. Hyphens in compound
+ *      adjectives are punctuation, not dashes, and are correct: "long-term",
+ *      "hands-on", "real-world", "full-service", "Multi-Channel".
+ *   2. Section headings carry no trailing full stop. A period that separates
+ *      two lines of a heading stays, because it is doing work.
  */
 export const NAV = [
   { href: '#top', label: 'Home' },
@@ -30,7 +33,7 @@ export const MENU = [
 export const FOOTER = {
   tagline: ['Strategy', 'Support', 'Business', 'Success'],
   blurb:
-    'Helping entrepreneurs and established businesses launch, position, and grow with practical strategy and hands on support.',
+    'Helping entrepreneurs and established businesses launch, position, and grow with practical strategy and hands-on support.',
   columns: [
     {
       title: 'Explore',
@@ -46,8 +49,8 @@ export const FOOTER = {
     {
       title: 'Services',
       links: [
-        { href: '#services', label: 'Business Launch and Setup' },
-        { href: '#services', label: 'Marketing and Promotion' },
+        { href: '#services', label: 'Business Launch & Setup' },
+        { href: '#services', label: 'Marketing & Promotion' },
         { href: '#services', label: 'Advertising Campaigns' },
       ],
     },
@@ -55,17 +58,6 @@ export const FOOTER = {
   legal: [
     { href: '/privacy', label: 'Privacy Policy' },
     { href: '/terms', label: 'Terms of Service' },
-  ],
-  /**
-   * Placeholders. The client has approved shipping these as-is for now and
-   * will supply real profiles later. They must be real or removed before
-   * launch: dead icons on a live site read as abandoned.
-   */
-  socials: [
-    { label: 'LinkedIn', href: '#' },
-    { label: 'Instagram', href: '#' },
-    { label: 'Facebook', href: '#' },
-    { label: 'YouTube', href: '#' },
   ],
 } as const;
 
@@ -78,84 +70,62 @@ export const CONTACT = {
 
 export const HERO = {
   eyebrow: 'Ideas. Strategy. Real Growth.',
-  headline: ['Your Vision.', 'Our Expertise.'],
-  lede: 'Consultants RS helps entrepreneurs and businesses turn ideas into successful ventures, build market presence, and create long term growth.',
-  imageAlt: 'A business owner looking out over the city from a high floor office',
+  headline: ['Your Vision.', 'Our Expertise'],
+  lede: 'Consultants RS LLC helps entrepreneurs and businesses turn ideas into successful ventures, build market presence, and achieve long-term growth.',
+  imageAlt: 'A corner office at sunset looking out over a city skyline',
   rail: ['Strategy', 'People', 'Opportunity', 'Growth'],
 } as const;
 
 /**
- * Change 03 from sign off: these three came out of the hero and now have
- * their own band directly beneath it.
+ * The hero's three counters, in their own band beneath it.
  *
  * Standing warning, carried from every prototype doc: not one of these has
  * been verified. The client has approved shipping them for now and changing
- * them later. "100% Client Satisfaction" in the Impact section further down
- * is an absolute performance claim about a real business and is the one to
- * remove first if anything is ever challenged.
+ * them later. "100% Client Satisfaction" in the Impact section further down is
+ * an absolute performance claim about a real business and is the one to remove
+ * first if anything is ever challenged.
  */
 export const FIGURES = [
   { value: 50, suffix: '+', label: 'Businesses Supported' },
-  { value: 100, suffix: '%', label: 'Client Focused' },
+  { value: 100, suffix: '%', label: 'Client-Focused' },
   { text: 'Global', label: 'Perspective' },
 ] as const;
 
 export const ABOUT = {
-  eyebrow: 'About Consultants RS',
-  headline: ['More Than Consultants.', 'Your Growth Partner.'],
+  eyebrow: 'About Consultants RS LLC',
+  headline: ['More Than Consultants.', 'Your Growth Partner'],
   body: [
-    'We work alongside ambitious entrepreneurs and businesses at every stage, from launch to long term growth, offering practical solutions, strategic guidance, and a hands on approach that helps you overcome challenges and unlock real opportunities.',
-    'Founded by Raza Hussain and Shane Mills, Consultants RS was built for owners who would rather be told the truth than be told what they want to hear.',
+    'We work alongside ambitious entrepreneurs and businesses at every stage, from launch to long-term growth, offering practical solutions, strategic guidance, and a hands-on approach that helps you overcome challenges and unlock real opportunities.',
+    'Founded by Raza Hussain and Shane Mills, Consultants RS LLC was built for owners who would rather be told the truth than be told what they want to hear.',
   ],
   pills: ['Launch', 'Position', 'Promote', 'Grow'],
   imageAlt: 'Curved modern architecture',
   quote: 'Businesses thrive when the right people stand behind them.',
-  cite: 'Consultants RS',
+  cite: SITE.name,
 } as const;
 
 export const SERVICES = {
   eyebrow: 'Our Core Services',
-  headline: 'Three Solutions. Endless Possibilities.',
-  lede: 'Everything you need to launch, position, and grow, under one roof.',
+  headline: ['Three Solutions.', 'One Clear Direction'],
+  lede: 'Everything you need to launch, position, and grow under one roof.',
   items: [
     {
       n: '01',
       title: ['Business Launch', '& Setup'],
-      body: 'Turn your idea into a fully operational business with the right foundation under it.',
-      points: [
-        'Business Registration',
-        'Licensing & Compliance',
-        'Business Structure',
-        'Operational Setup',
-        'Launch Strategy',
-      ],
-      imageAlt: 'Signing business formation documents',
+      body: 'Turn your idea into a fully operational business with the right foundation beneath it.',
+      imageAlt: 'Signing business formation documents at a desk overlooking the city',
     },
     {
       n: '02',
       title: ['Marketing', '& Promotion'],
       body: 'Build your brand, reach the right audience, and create real momentum behind it.',
-      points: [
-        'Brand Development',
-        'Social Media Management',
-        'Multi-Channel Marketing',
-        'Customer Acquisition',
-        'Market Positioning',
-      ],
-      imageAlt: 'Social platforms on a smartphone',
+      imageAlt: 'Reviewing performance charts on a laptop in a high floor office',
     },
     {
       n: '03',
       title: ['Advertising', 'Campaigns'],
       body: 'Put your message in front of the people most likely to act on it, and measure what comes back.',
-      points: [
-        'Campaign Strategy',
-        'Paid Advertising',
-        'Creative Production',
-        'Audience Targeting',
-        'Performance Tracking',
-      ],
-      imageAlt: 'A city billboard at dusk',
+      imageAlt: 'A large illuminated advertising screen on a city street at dusk',
     },
   ],
 } as const;
@@ -172,11 +142,11 @@ export const RIBBON = [
 export const STATEMENT = {
   /** Word indices rendered in gold. Phase 3 scrubs the line on scroll. */
   goldWords: [2, 6, 10],
-  text: 'We start businesses. We make them known. We buy the attention that fills them. Three services, run end to end, by the two people you actually meet.',
+  text: 'We start businesses. We make them known. We turn attention into opportunity. Three services, run end to end, by the two people you actually meet.',
   points: [
     {
       title: 'No handoffs',
-      body: 'Registration, brand and paid media under one roof. Nothing gets lost between three vendors who have never spoken to each other.',
+      body: 'Registration, branding, and paid media under one roof. Nothing gets lost between three vendors who have never spoken to each other.',
     },
     {
       title: 'No account managers',
@@ -189,15 +159,10 @@ export const STATEMENT = {
   ],
 } as const;
 
-/**
- * The client chose to keep this band as well as the new Figures band under the
- * hero. "100% Client Satisfaction" is an absolute performance claim about a
- * real business and remains unverified. It is the first thing to remove if it
- * is ever challenged.
- */
 export const IMPACT = {
   eyebrow: 'Real People, Real Results',
-  headline: ['Real Businesses.', 'Real Impact.'],
+  headline: ['Real Businesses.', 'Real Impact'],
+  imageAlt: '',
   figures: [
     { value: 50, suffix: '+', label: 'Projects Completed' },
     { value: 100, suffix: '%', label: 'Client Satisfaction' },
@@ -207,7 +172,7 @@ export const IMPACT = {
 
 export const PROCESS = {
   eyebrow: 'Our Process',
-  headline: 'From Vision to Results.',
+  headline: 'From Vision to Results',
   lede: 'A clear, strategic process designed to turn your goals into measurable success.',
   steps: [
     {
@@ -223,15 +188,19 @@ export const PROCESS = {
     {
       n: '03',
       title: 'Execute',
-      body: 'Implement with precision and expertise, alongside you.',
+      body: 'Execute with precision and expertise, working alongside you.',
     },
-    { n: '04', title: 'Grow', body: 'Optimize, scale, and create new opportunities.' },
+    {
+      n: '04',
+      title: 'Grow',
+      body: 'Optimize, scale, and create new opportunities for your business.',
+    },
   ],
 } as const;
 
 export const WHY = {
-  eyebrow: 'Why Consultants RS',
-  headline: ['The Difference', 'Is in Our Approach.'],
+  eyebrow: 'Why Consultants RS LLC',
+  headline: ['The Difference', 'Is in Our Approach'],
   lede: 'We do not just offer services. We build lasting partnerships through strategy, experience, and commitment.',
   items: [
     {
@@ -239,7 +208,7 @@ export const WHY = {
       body: 'We look beyond individual tasks and focus on the bigger picture.',
     },
     {
-      title: 'Hands On Partnership',
+      title: 'Hands-On Partnership',
       body: 'We work alongside you, not from the sidelines.',
     },
     {
@@ -256,8 +225,8 @@ export const WHY = {
 
 export const INDUSTRIES = {
   eyebrow: 'Industries We Support',
-  headline: 'Built for Ambitious Businesses.',
-  lede: 'We work with a diverse range of industries, bringing tailored solutions and real world experience to every project.',
+  headline: 'Built for Ambitious Businesses',
+  lede: 'We work with a diverse range of industries, bringing tailored solutions and real-world experience to every project.',
   tiles: [
     'Startups',
     'Local Businesses',
@@ -270,7 +239,19 @@ export const INDUSTRIES = {
   ],
 } as const;
 
-/** Permission confirmed by the client for all three, to be revisited later. */
+export const CLIENTS = {
+  eyebrow: 'Client Testimonials',
+  headline: 'What Our Clients Say',
+} as const;
+
+/**
+ * Permission confirmed by the client for all three, to be revisited later.
+ *
+ * Two of these say "Consultants RS" rather than "Consultants RS LLC". That is
+ * deliberate: they are attributed quotations from named people, and rewriting
+ * someone's words to insert a legal suffix they did not say is not a copy
+ * change, it is a fabrication. Left verbatim.
+ */
 export const TESTIMONIALS = [
   {
     quote:
@@ -294,22 +275,20 @@ export const TESTIMONIALS = [
 
 export const FOUNDERS = {
   eyebrow: 'About Us',
-  headline: ['Built on Experience.', 'Driven by Your Ambition.'],
+  headline: ['Built on Experience.', 'Driven by Your Ambition'],
   body: [
-    'Consultants RS was founded by Raza Hussain and Shane Mills with a simple goal: to help businesses succeed. What started as a few projects and local support has grown into a full service consulting firm, offering strategic guidance to businesses at every stage of growth.',
-    'Every engagement still runs through the two of them and a vetted network of specialists, which is why they would rather do three things properly than list nine and hope.',
+    'Consultants RS LLC was founded by Raza Hussain and Shane Mills with a simple goal: to help businesses succeed. What started as a few projects and local support has grown into a full-service consulting firm, offering strategic guidance to businesses at every stage of growth.',
+    "Every engagement is led by the two of them and supported by a vetted network of specialists. That's why they would rather do three things properly than list nine and hope.",
   ],
-  /** Monogram panel retained by client decision until headshots are supplied. */
   people: [
-    { initials: 'RH', name: 'Raza Hussain', role: 'Co Founder' },
-    { initials: 'SM', name: 'Shane Mills', role: 'Co Founder' },
+    { initials: 'RH', name: 'Raza Hussain', role: 'Co-Founder' },
+    { initials: 'SM', name: 'Shane Mills', role: 'Co-Founder' },
   ],
-  note: 'Founder photography to be supplied',
 } as const;
 
 export const FAQ = {
   eyebrow: 'Questions',
-  headline: ['Answered Before', 'You Ask.'],
+  headline: ['Answered Before', 'You Ask'],
   lede: 'The things people ask us most, answered the way we would answer them on a call.',
   items: [
     {
@@ -334,19 +313,19 @@ export const FAQ = {
     },
     {
       q: 'What size of business do you take on?',
-      a: 'From one person about to file their first paperwork to established operators running several locations. Size matters less than whether you want to be told the truth about your business, because that is the only way we know how to work.',
+      a: 'We work with everyone from one person about to file their first paperwork to established operators running several locations. Size matters less than whether you want to be told the truth about your business, because that is the only way we know how to work.',
     },
   ],
 } as const;
 
 export const CTA = {
   eyebrow: "Let's Work Together",
-  headline: 'Your Next Move Starts Here.',
+  headline: 'Your Next Move Starts Here',
   lede: "Whether you are launching, repositioning, or looking for your next stage of growth, let's talk about what is possible.",
   details: [
     { label: 'Our Location', value: ['268 Post Road, Suite 200', 'Fairfield, CT 06824'] },
     { label: 'Get in Touch', value: [SITE.phone], href: SITE.phoneHref },
     { label: 'Email Us', value: [SITE.email], href: `mailto:${SITE.email}` },
-    { label: 'Availability', value: ['24 hours, 7 days'] },
+    { label: 'Availability', value: ['24/7'] },
   ],
 } as const;

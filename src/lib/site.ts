@@ -33,8 +33,17 @@ export const SITE_URL: string =
   FALLBACK;
 
 export const SITE = {
-  name: 'Consultants RS',
-  legalName: 'Consultants RS',
+  /** The business name, used in prose, metadata and structured data. */
+  name: 'Consultants RS LLC',
+  legalName: 'Consultants RS LLC',
+  /**
+   * The header and footer lockup. Deliberately without "LLC": that was an
+   * explicit instruction earlier in the project and the later "use the full
+   * name everywhere" note was about body copy, so the two are kept separate
+   * rather than one silently overriding the other. Flip this to SITE.name if
+   * the mark should carry it too.
+   */
+  lockup: 'Consultants RS',
   phone: '(914) 906-6800',
   phoneHref: 'tel:+19149066800',
   email: 'info@consultantsrs.com',

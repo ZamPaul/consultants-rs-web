@@ -21,9 +21,16 @@ const ICONS = [
   </>,
 ];
 
+/**
+ * The one light section on a dark page, by request: a form on a cream ground
+ * asks less of the visitor than the same form floating on near black.
+ *
+ * The photograph stays but drops to a texture behind a heavy cream scrim,
+ * because a dark image under light copy fights it.
+ */
 export function Contact() {
   return (
-    <section className="sec ct" id="contact">
+    <section className="sec ct light" id="contact">
       <div className="ct-bg" data-par-box="0.1">
         <Image src={cta} alt="" sizes="100vw" placeholder="blur" />
       </div>
@@ -55,7 +62,7 @@ export function Contact() {
                     >
                       {ICONS[i]}
                     </svg>
-                    <span>
+                    <span className="ct-text">
                       <em>{detail.label}</em>
                       <b>
                         {detail.value.map((line, n) => (
@@ -73,7 +80,7 @@ export function Contact() {
                     {'href' in detail && detail.href ? (
                       <a href={detail.href}>{inner}</a>
                     ) : (
-                      inner
+                      <div className="ct-row">{inner}</div>
                     )}
                   </li>
                 );

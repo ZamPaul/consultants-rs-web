@@ -7,9 +7,9 @@ export function Founders() {
       <div className="wrap">
         <div className="fnd-grid">
           {/*
-            Monogram panel, kept by client decision until headshots arrive.
-            The note is deliberately visible: a placeholder that looks
-            finished is a placeholder that ships.
+            Monogram panel. The client has confirmed there will be no founder
+            photography, so this is the finished treatment rather than a
+            placeholder, and the "to be supplied" strip has been removed.
           */}
           <div className="fnd-panel" data-fade>
             {FOUNDERS.people.map((person) => (
@@ -21,7 +21,6 @@ export function Founders() {
                 <span>{person.role}</span>
               </div>
             ))}
-            <span className="fnd-note">{FOUNDERS.note}</span>
           </div>
 
           <div data-fade>

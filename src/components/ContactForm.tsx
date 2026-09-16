@@ -158,7 +158,7 @@ export function ContactForm() {
           </label>
           <textarea
             id="f-msg"
-            placeholder="Where the business is now, and where you want it to be."
+            placeholder="Where your business is now, and where you want it to be."
             aria-invalid={!!errors.message}
             aria-describedby={errors.message ? 'e-msg' : undefined}
             {...register('message')}
@@ -210,8 +210,8 @@ export function ContactForm() {
             </span>
           </button>
           <small>
-            Your details stay with Consultants RS. We do not sell, share, or add you to a
-            mailing list.
+            Your details stay with Consultants RS LLC. We do not sell, share, or add you
+            to a mailing list.
           </small>
         </div>
       </form>

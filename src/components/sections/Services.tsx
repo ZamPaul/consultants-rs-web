@@ -1,11 +1,11 @@
 import Image, { type StaticImageData } from 'next/image';
-import s1 from '@/assets/s1.webp';
-import s2 from '@/assets/s2.webp';
-import s3 from '@/assets/s3.webp';
-import { Arrow, Tick } from '@/components/Icons';
+import service1 from '@/assets/service1.webp';
+import service2 from '@/assets/service2.webp';
+import service3 from '@/assets/service3.webp';
+import { Arrow } from '@/components/Icons';
 import { SERVICES } from '@/lib/content';
 
-const IMAGES: StaticImageData[] = [s1, s2, s3];
+const IMAGES: StaticImageData[] = [service1, service2, service3];
 
 export function Services() {
   return (
@@ -14,7 +14,9 @@ export function Services() {
         <div className="center" data-fade>
           <span className="eyebrow">{SERVICES.eyebrow}</span>
           <h2 className="h2" data-split>
-            {SERVICES.headline}
+            {SERVICES.headline[0]}
+            <br />
+            {SERVICES.headline[1]}
           </h2>
           <p className="lede" style={{ marginTop: 20 }}>
             {SERVICES.lede}
@@ -43,14 +45,6 @@ export function Services() {
                   {item.title[1]}
                 </h3>
                 <p>{item.body}</p>
-                <ul className="ticks">
-                  {item.points.map((point) => (
-                    <li key={point}>
-                      <Tick />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
                 <a className="alink" href="#contact">
                   Learn More <Arrow />
                 </a>

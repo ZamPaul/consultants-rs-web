@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Logo } from '@/components/Logo';
 import { MENU, NAV } from '@/lib/content';
+import { scrollToHash } from '@/lib/scroll';
 import { SITE } from '@/lib/site';
 
 function Arrow() {
@@ -38,6 +39,23 @@ export function SiteHeader() {
   }, [open]);
 
   useEffect(() => {
+    function onClick(event: MouseEvent) {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey)
+        return;
+      const link = (event.target as HTMLElement | null)?.closest?.('a[href^="#"]');
+      if (!(link instanceof HTMLAnchorElement)) return;
+      const hash = link.getAttribute('href');
+      if (!hash || hash === '#') return;
+      if (scrollToHash(hash)) {
+        event.preventDefault();
+        setOpen(false);
+      }
+    }
+    document.addEventListener('click', onClick);
+    return () => document.removeEventListener('click', onClick);
+  }, []);
+
+  useEffect(() => {
     if (!open) return;
     const sheet = sheetRef.current;
     sheet?.querySelector<HTMLAnchorElement>('a')?.focus();
@@ -70,8 +88,12 @@ export function SiteHeader() {
     <>
       <header className={stuck ? 'hdr stuck' : 'hdr'} id="hdr">
         <div className="wrap">
-          <a className="brand-link" href="#top" aria-label={`${SITE.name}, back to top`}>
-            <Logo ground="dark" size={38} priority />
+          <a
+            className="brand-link"
+            href="#top"
+            aria-label={`${SITE.lockup}, back to top`}
+          >
+            <Logo ground="light" size={44} priority />
           </a>
 
           <nav className="nav" aria-label="Primary">
@@ -141,7 +163,6 @@ export function SiteHeader() {
               className="sl sheet-item"
               key={item.label}
               href={item.href}
-              onClick={close}
               style={{ '--i': i, '--r': MENU.length - 1 - i } as React.CSSProperties}
             >
               {item.label}
@@ -153,17 +174,9 @@ export function SiteHeader() {
           <a
             className="btn btn--gold sheet-item"
             href="#contact"
-            onClick={close}
-            style={{ '--i': MENU.length, '--r': 1 } as React.CSSProperties}
+            style={{ '--i': MENU.length, '--r': 0 } as React.CSSProperties}
           >
             <span>Start a Conversation</span>
-          </a>
-          <a
-            className="btn btn--out sheet-item"
-            href={SITE.phoneHref}
-            style={{ '--i': MENU.length + 1, '--r': 0 } as React.CSSProperties}
-          >
-            <span>{SITE.phone}</span>
           </a>
         </div>
       </div>

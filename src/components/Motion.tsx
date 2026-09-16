@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { registerLenis } from '@/lib/scroll';
 
 /**
  * The motion layer.
@@ -68,7 +69,11 @@ export function Motion() {
         gsap.ticker.add(tick);
         gsap.ticker.lagSmoothing(0);
         lenis.on('scroll', ScrollTrigger.update);
+        // Anchor clicks are handled in src/lib/scroll.ts and need to go
+        // through this instance, or they fight the smooth scroller.
+        registerLenis(lenis);
         cleanups.push(() => {
+          registerLenis(null);
           gsap.ticker.remove(tick);
           lenis.destroy();
         });

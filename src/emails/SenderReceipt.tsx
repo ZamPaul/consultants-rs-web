@@ -40,7 +40,7 @@ export function SenderReceipt({
       <Preview>{`We have your message. Reference ${ref}.`}</Preview>
       <Body style={body}>
         <Container style={container}>
-          <Text style={brand}>Consultants RS</Text>
+          <Text style={brand}>Consultants RS LLC</Text>
           <Heading style={h1}>Thanks, {first}.</Heading>
           <Text style={lede}>
             Your message reached us and one of us will read it personally. We are a team
@@ -64,7 +64,7 @@ export function SenderReceipt({
 
           <Hr style={hr} />
           <Text style={foot}>
-            Consultants RS · 268 Post Road, Suite 200, Fairfield, CT 06824 ·{' '}
+            Consultants RS LLC · 268 Post Road, Suite 200, Fairfield, CT 06824 ·{' '}
             <Link href={`mailto:${email}`} style={link}>
               {email}
             </Link>
